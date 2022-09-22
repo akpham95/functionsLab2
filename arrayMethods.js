@@ -17,8 +17,10 @@ const mixedNumbers = [6,3,1,7,5,2,6,8,9,4,2,7,9,3,1,8,4,3];
   (element, index, wholeArray)=>{}    Arrow Form
 */
 
-// CODE HERE
-const evenNumbers // = mixedNumbers.filter(/* Provide Your Callback Here */)
+
+
+let evenNumbers = mixedNumbers.filter((number, index) => number % 2 === 0)
+console.log(evenNumbers)
 
 
 
@@ -38,9 +40,19 @@ const prices = [15.00, 23.00, 78.00, 34.00, 12.00, 86.00, 12.00, 79.00, 32.00];
   (element, index, wholeArray)=>{}    Arrow Form
 */
 
-// CODE HERE
-const postTaxPrices // = prices.map(/* Provide Your Callback Here );
 
+
+
+const postTaxPrices = prices.map((price, index, array) => price * 1.07)
+const postTaxPrice2 = prices.map((price) => price *1.07)
+
+const postTaxPrice3 = prices.map(function(elem) {
+    return elem * 1.07
+})
+
+console.log(postTaxPrices)
+console.log(postTaxPrice2)
+console.log(postTaxPrice3)
 
 
 ////////// PROBLEM 3 //////////
@@ -56,9 +68,16 @@ const populations = [8175133, 3792621, 2695598, 2100263];
   (runningTotal, curElement, curIndex, wholeArray)=>{} Arrow Form
 */
 
-// CODE HERE
-const totalPopulation //  = populations.reduce(/* Provide Your Callback Here */)
 
+
+const totalPopulation = populations.reduce((prev_value, curr_value) => prev_value + curr_value)
+// reduce callback function asks for the previous value of the array which is 0, and the current value (8175133) then we return the sum of those two values
+console.log(totalPopulation)
+
+const totalPopulation2 = populations.reduce(function(prev_value, curr_value) {
+  return prev_value + curr_value
+})
+console.log(totalPopulation2)
 
 
 ////////// PROBLEM 4 //////////
@@ -81,10 +100,17 @@ const monstersInYourPocket = [{"monster":"Bulbabunny","CP":156},{"monster":"Bulb
   Use the filter method to return only the monsters that have a CP of over 200.
 */
 
-// CODE HERE
-const myStrongest // = monstersInYourPocket.filter(/* Provide Your Callback Here */)
 
 
+const myStrongest = monstersInYourPocket.filter(elem_value => elem_value.CP > 200)
+ // call filter method of our array that takes in our first parameter(value of our element)
+// return element value of CP in our object array
+console.log(myStrongest)
+
+const myStrongest2 = monstersInYourPocket.filter(function(elem_value){
+  return elem_value.CP > 200
+})
+console.log(myStrongest2)
 
 ////////// PROBLEM 5 //////////
 
@@ -96,10 +122,13 @@ const orders = [{"price":15,"tax":0.09},{"price":42,"tax":0.07},{"price":56,"tax
 // Do not edit code above.
 
 /*
-  Use a higher order method to get all the order totals after adding in the sales tax (given to you as a tax rate, hint: you'll need to do some multiplication). Your answer should be an array of numbers, one total for each order.
-*/
+  Use a higher order method to get all the order totals after adding in the sales tax (given to you as a tax rate,
+     hint: you'll need to do some multiplication).
+   Your answer should be an array of numbers, one total for each order.
+*/ 
 
-// CODE HERE
+let grandTotal = orders.map(order => order.price + (order.price * order.tax))
+console.log(grandTotal)
 
 
 
@@ -119,4 +148,8 @@ const purchases = [{"owner":"Barry","price":103},{"owner":"Bob","price":75},
   Use a high order method(s) to get the sum of bobsTotal.
 */
 
-// CODE HERE
+let bobsTotal = purchases
+.filter(purchase => purchase.owner === "Bob")
+.reduce((acc, elem) => acc + elem.price, 0)
+
+console.log(bobsTotal)
